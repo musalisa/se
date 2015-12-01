@@ -73,7 +73,7 @@
 
 int main()
 {
-  swe_set_ephe_path("/home/viridiana/Morinus/SWEP/Ephem/");
+  swe_set_ephe_path("./SWEP/");
   char snam[40], serr[AS_MAXCH]; 
   int jday = 15, jmon = 10, jyear = 1964;
   int ora = 16;

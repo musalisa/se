@@ -30,3 +30,6 @@
 
 # Debug files
 *.dSYM/
+
+# Swiss Ephmeris Files
+SWEP/*
