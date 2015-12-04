@@ -75,9 +75,9 @@ int main()
 {
   swe_set_ephe_path("./SWEP/");
   char snam[40], serr[AS_MAXCH]; 
-  int jday = 15, jmon = 10, jyear = 1964;
-  int ora = 16;
-  int min = 5;
+  int jday = 07, jmon = 11, jyear = 1964;
+  int ora = 23;
+  int min = 3;
   double jut = ora + min / 60;
 
   double tjd, te, x2[6];
