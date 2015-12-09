@@ -79,21 +79,31 @@ int main()
   int ora = 23;
   int min = 3;
   double jut = ora + min / 60;
+  static double geopos[3], armc;
+
+  /* Alessandra 44°54′48″N 8°37′12″E 95m */
+  top_long = 44.916; top_lat = 8.616; top_elev = 95;
+  /* Milano 45°27′50.98″N 9°11′25.21″E 122m */
+  /* top_long = 45.464; top_lat = 9.19; top_elev = 122;a */
+  geopos[0] = top_long;
+  geopos[1] = top_lat;
+  geopos[2] = top_elev;
+  swe_set_topo(top_long, top_lat, top_elev);
 
   double tjd, te, x2[6];
   int32 iflag, iflgret;
   int p;
   iflag = SEFLG_SPEED;
-	    /*
-	     * we have day, month and year and convert to Julian day number
-	     */
-    tjd = swe_julday(jyear,jmon,jday,jut,SE_GREG_CAL);        
-	    /*
-	     * compute Ephemeris time from Universal time by adding delta_t
-	     */
-    te = tjd + swe_deltat(tjd);
-    printf("date: %02d.%02d.%d at %02d:%02d Universal time\n", jday, jmon, jyear, ora, min);
-    printf("planet     \tlongitude\tlatitude\tdistance\tspeed long.\n");
+  /*
+   * we have day, month and year and convert to Julian day number
+   */
+  tjd = swe_julday(jyear,jmon,jday,jut,SE_GREG_CAL);        
+  /*
+   * compute Ephemeris time from Universal time by adding delta_t
+   */
+   te = tjd + swe_deltat(tjd);
+   printf("date: %02d.%02d.%d at %02d:%02d Universal time\n", jday, jmon, jyear, ora, min);
+   printf("planet     \tlongitude\tlatitude\tdistance\tspeed long.\n");
 	    /*
 	     * a loop over all planets
 	     */
