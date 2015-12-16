@@ -20,3 +20,11 @@ for p in range( 0,7 ):
 	print( swe.get_planet_name( p ))
 	print( swe.calc_ut( jut, p, swe.FLG_SPEED ))
 	print( swe.calc_ut( jut, p, swe.FLG_EQUATORIAL ))
+
+
+print(swe.houses(jut, top_lat, top_long, b'P'))
+print(swe.houses_ex(jut, top_lat, top_long, b'P'))
+#        Calculate houses cusps (UT).
+#       
+#        Args: float julday, float lat, float lon, char hsys='P'
+#        Return: 2 tuples of 12 and 8 float (cusps, ascmc) (except Gauquelin)
