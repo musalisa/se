@@ -33,3 +33,7 @@
 
 # Swiss Ephmeris Files
 SWEP/*
+
+
+# D3 library
+d3/*
