@@ -1,4 +1,5 @@
 import swisseph as swe
+import math
 
 def decdeg2dms(dd):
 	is_positive = dd >= 0
@@ -43,6 +44,7 @@ case_ar = [ARMC]
 case_ar_gm = []
 case_poli = []
 case_cuspidi = swe.houses(jut, top_lat, top_long, b'P')[0]
+AOHOR = case_cuspidi[3]
 for i in range(0,12):
 	case_ar.append((case_ar[i-1] + 30)%360)
 for i in range(1,12):
@@ -50,9 +52,16 @@ for i in range(1,12):
 print( "AR case dalla 10°")
 print(case_ar)
 print(case_ar_gm)
+print( "AOHOR")
+print( AOHOR)
 print( "cuspidi case dalla 10°")
 print(case_cuspidi)
-swe_houses = swe.houses(jut, top_lat, top_long, b'P')
+#swe_houses = swe.houses(jut, top_lat, top_long, b'P')
+
+### CARTA Z #################################
+grado_z = 180 - AOHOR
+for i in range(0, 360, 30):
+	print (grado_z+i, math.cos(math.radians(grado_z+i)));
 #print(swe_houses)
 
 #for p in range( 0,7 ):
