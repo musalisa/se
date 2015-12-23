@@ -6,12 +6,21 @@
    </head>
    <body>
      <script type="text/javascript">
+circleRadii = [20, 100]
+var svgContainer = d3.select("body").append("svg")
+                                    .attr("width", 600)
+                                    .attr("height", 100);
+
+var circles = svgContainer.selectAll("circle")
+                          .data(circleRadii)
+                          .enter()
+                          .append("circle")
+var circleAttributes = circles
+                      .attr("cx", function (d) { return d; })
+                      .attr("cy", 50)
+                      .attr("r", 20)
+                      .style("fill", "green");
      </script>
-<div>
-<svg width="400" height="400">
-  <circle cx="200" cy="200" r="199" fill="white" stroke="black" stroke-width="2" />
-  <circle cx="200" cy="200" r="139" fill="white" stroke="black" stroke-width="2" />
-</svg>
-</div>
+
   </body>
 </html>
