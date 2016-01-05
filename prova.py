@@ -49,19 +49,28 @@ for i in range(0,12):
 	case_ar.append((case_ar[i-1] + 30)%360)
 for i in range(1,12):
 	case_ar_gm.append(decdeg2dm(case_ar[i],"dm"))
-print( "AR case dalla 10°")
+print( "\nAR case dalla 10°")
 print(case_ar)
 print(case_ar_gm)
-print( "AOHOR")
+print( "\nAOHOR")
 print( AOHOR)
-print( "cuspidi case dalla 10°")
+print( "\ncuspidi case dalla 10°")
 print(case_cuspidi)
 #swe_houses = swe.houses(jut, top_lat, top_long, b'P')
 
 ### CARTA Z #################################
+print( "\nCuspidi dei segni")
 grado_z = 180 - AOHOR
+cx = 350
+cy = 350
+z1 = 200
+z2 = 300
 for i in range(0, 360, 30):
-	print (grado_z+i, math.cos(math.radians(grado_z+i)));
+	#print (grado_z+i, math.cos(math.radians(grado_z+i))*80, math.sin(math.radians(grado_z+i))*80,math.cos(math.radians(grado_z+i))*100, math.sin(math.radians(grado_z+i))*100);
+	print ( "{ x1:", (math.cos(math.radians(grado_z+i)) * z1) + cx, ",")
+	print ( "  y1:", (math.sin(math.radians(grado_z+i)) * z1) + cy, ",")
+	print ( "  x2:", (math.cos(math.radians(grado_z+i)) * z2) + cx, ",")
+	print ( "  y2:", (math.sin(math.radians(grado_z+i)) * z2) + cy, "\n},")
 #print(swe_houses)
 
 #for p in range( 0,7 ):

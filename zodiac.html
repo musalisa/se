@@ -6,20 +6,53 @@
    </head>
    <body>
      <script type="text/javascript">
-circleRadii = [20, 100]
+circleRadii = [300, 200]
 var svgContainer = d3.select("body").append("svg")
-                                    .attr("width", 600)
-                                    .attr("height", 100);
+                                    .attr("width", 700)
+                                    .attr("height", 700);
 
 var circles = svgContainer.selectAll("circle")
                           .data(circleRadii)
                           .enter()
-                          .append("circle")
+                          .append("circle");
+
 var circleAttributes = circles
-                      .attr("cx", function (d) { return d; })
-                      .attr("cy", 50)
-                      .attr("r", 20)
-                      .style("fill", "green");
+                      .attr("cx", 350)
+                      .attr("cy", 350)
+                      .attr("r", function (d) { return d; })
+                      .style("fill", "white")
+                      .style("stroke", "black")
+                      .style("stroke-width", 3);
+
+zsegsAttributes =  
+//	[	{ "x1": 0, "y1": 200, "x2": 0, "y2": 300 }]
+		//{ "x1": 200, "y1": 0, "x2": 300, "y2": 0 } ]
+		//{ "x1": 0, "y1": 200, "x2": 0, "y2": 300 },
+		//{ "x1": 200, "y1": 0, "x2": 300, "y2": 0 } ]
+
+
+[
+{ x1: 549.2596554613979 ,
+  y1: 367.19272245471916 ,
+  x2: 648.8894831920968 ,
+  y2: 375.7890836820787 
+},
+{ x1: 513.9675623515457 ,
+  y1: 464.51916213670086 ,
+  x2: 595.9513435273185 ,
+  y2: 521.7787432050513 
+}]
+var zsegs = svgContainer.selectAll("zsegs")
+                          .data(zsegsAttributes)
+                          .enter()
+                          .append("line");
+var zsegsAttributes = zsegs
+                      .attr("x1", function (d) { return d.x1})
+                      .attr("y1", function (d) { return d.y1})
+                      .attr("x2", function (d) { return d.x2})
+                      .attr("y2", function (d) { return d.y2})
+                      .style("stroke", "black")
+                      .style("stroke-width", 3);
      </script>
 
   </body>
