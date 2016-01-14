@@ -1,6 +1,9 @@
 import swisseph as swe
 import math
 
+global epsilon
+epsilon = 23.45
+
 def decdeg2dms(dd):
 	is_positive = dd >= 0
 	minutes,seconds = divmod(dd*3600,60)
@@ -17,9 +20,27 @@ def decdeg2dm(dd, format=""):
 		return(degrees + '°' + minutes + '')
 	else:
 		return (int(degrees),round(minutes))
-# uomo nato a Milano (longitudine 9°11' Est, latitudine +45°28') il 14 Aprile 1956 alle ore 10 e minuti 35, ora civile
+
+def hor(hor, polo):
+#Formula 23 per l'oroscopo nell'emisfero ascendente
+	h = math.radians( hor )
+	e = math.radians( epsilon )
+	p = math.radians( polo )
+	d = math.cos( h ) * math.cos( e ) - math.sin( e ) * math.tan( p )   
+	hor = math.atan( math.sin( h )/d ) 
+	if d > 0:
+		return math.degrees(hor)
+	else:
+		return math.degrees(hor) + 180
+	
+##  formula 23 emisfero ascendente
+# tan(lambda) = sen(AOCH)/cos(AOCH)*(cos(epsilon) - sen(epsilon)*tan(Polo))
+##  formula 24 emisfero discendente
+# tan(lambda) = sen(DOCH)/cos(DOCH)*(cos(epsilon) + sen(epsilon)*tan(Polo))
 
 ###### Data #################################
+# uomo nato a Milano (longitudine 9°11' Est, latitudine +45°28') il 14 Aprile 1956 alle ore 10 e minuti 35, ora civile
+## 14 Aprile 1956, ore 10:35 (9:35 TU) a Milano, +45°28', 9°11' Est.
 YYYY = 1956
 MM = 4
 DD = 14
@@ -39,24 +60,42 @@ top_lat = 45.464; top_long = 9.19; top_elev = 122;
 swe.set_topo(top_long, top_lat, top_elev)
 
 ## CASE ##########################################
+# Ascensione retta mediocelo
 ARMC = (swe.sidtime(jut)+(top_long/15))*15;  
+print( "\nARMC")
+print(ARMC)
+
+# Ascensioni rette delle case
 case_ar = [ARMC]
 case_ar_gm = []
-case_poli = []
-case_cuspidi = swe.houses(jut, top_lat, top_long, b'P')[0]
-AOHOR = case_cuspidi[3]
 for i in range(0,12):
 	case_ar.append((case_ar[i-1] + 30)%360)
 for i in range(1,12):
 	case_ar_gm.append(decdeg2dm(case_ar[i],"dm"))
-print( "\nAR case dalla 10°")
-print(case_ar)
-print(case_ar_gm)
+#print( "\nAR case dalla 10°")
+#print(case_ar)
+#print(case_ar_gm)
+
+#  Ascensioni oblique delle  case
+(ZZ, AOHOR) = divmod((ARMC + 90) , 360)
 print( "\nAOHOR")
 print( AOHOR)
-print( "\ncuspidi case dalla 10°")
+
+# Poli delle case
+case_poli = []
+
+# Cuspidi delle case sullo zodiaco
+case_cuspidi = swe.houses(jut, top_lat, top_long, b'P')[0]
+HOR = hor( AOHOR, top_lat)
+#HOR = case_cuspidi[0]
+print( "\nHOR")
+print( HOR )
+print(decdeg2dm(HOR))
+print( "\ncuspidi case dalla 10° sullo zodiaco")
 print(case_cuspidi)
-#swe_houses = swe.houses(jut, top_lat, top_long, b'P')
+swe_houses = swe.houses(jut, top_lat, top_long, b'P')
+
+
 
 ### CARTA Z #################################
 print( "\nCuspidi dei segni")
@@ -66,13 +105,13 @@ cy = 350
 z1 = 200
 z2 = 300
 for i in range(0, 360, 30):
-	#print (grado_z+i, math.cos(math.radians(grado_z+i))*80, math.sin(math.radians(grado_z+i))*80,math.cos(math.radians(grado_z+i))*100, math.sin(math.radians(grado_z+i))*100);
+	##print (grado_z+i, math.cos(math.radians(grado_z+i))*80, math.sin(math.radians(grado_z+i))*80,math.cos(math.radians(grado_z+i))*100, math.sin(math.radians(grado_z+i))*100);
 	print ( "{ x1:", (math.cos(math.radians(grado_z+i)) * z1) + cx, ",")
 	print ( "  y1:", (math.sin(math.radians(grado_z+i)) * z1) + cy, ",")
 	print ( "  x2:", (math.cos(math.radians(grado_z+i)) * z2) + cx, ",")
 	print ( "  y2:", (math.sin(math.radians(grado_z+i)) * z2) + cy, "\n},")
-#print(swe_houses)
 
+#print(swe_houses)
 #for p in range( 0,7 ):
 #	print( swe.get_planet_name( p ))
 #	print( swe.calc_ut( jut, p, swe.FLG_SPEED ))
