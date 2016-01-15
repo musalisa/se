@@ -37,6 +37,10 @@ def hor(hor, polo):
 # tan(lambda) = sen(AOCH)/cos(AOCH)*(cos(epsilon) - sen(epsilon)*tan(Polo))
 ##  formula 24 emisfero discendente
 # tan(lambda) = sen(DOCH)/cos(DOCH)*(cos(epsilon) + sen(epsilon)*tan(Polo))
+# Differenza ascensionale mac
+#sen (DAmax) = tan (e) tan (lat)
+#  formila 22 poli case 11, 3, 5, 9	tan (P) = sen (1/3 DAmax) cot (e)
+#formula  (23) poli case 12, 2, 6, 8	tan (P) = sen (2/3 DAmax) cot (e)
 
 ###### Data #################################
 # uomo nato a Milano (longitudine 9°11' Est, latitudine +45°28') il 14 Aprile 1956 alle ore 10 e minuti 35, ora civile
@@ -62,8 +66,8 @@ swe.set_topo(top_long, top_lat, top_elev)
 ## CASE ##########################################
 # Ascensione retta mediocelo
 ARMC = (swe.sidtime(jut)+(top_long/15))*15;  
-print( "\nARMC")
-print(ARMC)
+#print( "\nARMC")
+#print(ARMC)
 
 # Ascensioni rette delle case
 case_ar = [ARMC]
@@ -78,8 +82,8 @@ for i in range(1,12):
 
 #  Ascensioni oblique delle  case
 (ZZ, AOHOR) = divmod((ARMC + 90) , 360)
-print( "\nAOHOR")
-print( AOHOR)
+#print( "\nAOHOR")
+#print( AOHOR)
 
 # Poli delle case
 case_poli = []
@@ -88,17 +92,17 @@ case_poli = []
 case_cuspidi = swe.houses(jut, top_lat, top_long, b'P')[0]
 HOR = hor( AOHOR, top_lat)
 #HOR = case_cuspidi[0]
-print( "\nHOR")
-print( HOR )
-print(decdeg2dm(HOR))
-print( "\ncuspidi case dalla 10° sullo zodiaco")
-print(case_cuspidi)
+#print( "\nHOR")
+#print( HOR )
+#print(decdeg2dm(HOR))
+#print( "\ncuspidi case dalla 10° sullo zodiaco")
+#print(case_cuspidi)
 swe_houses = swe.houses(jut, top_lat, top_long, b'P')
 
 
 
 ### CARTA Z #################################
-print( "\nCuspidi dei segni")
+#print( "\nCuspidi dei segni")
 grado_z = 180 - AOHOR
 cx = 350
 cy = 350
@@ -107,9 +111,9 @@ z2 = 300
 for i in range(0, 360, 30):
 	##print (grado_z+i, math.cos(math.radians(grado_z+i))*80, math.sin(math.radians(grado_z+i))*80,math.cos(math.radians(grado_z+i))*100, math.sin(math.radians(grado_z+i))*100);
 	print ( "{ x1:", (math.cos(math.radians(grado_z+i)) * z1) + cx, ",")
-	print ( "  y1:", (math.sin(math.radians(grado_z+i)) * z1) + cy, ",")
+	print ( "  y1:", (math.sin(math.radians(grado_z+i)) * -z1) + cy, ",")
 	print ( "  x2:", (math.cos(math.radians(grado_z+i)) * z2) + cx, ",")
-	print ( "  y2:", (math.sin(math.radians(grado_z+i)) * z2) + cy, "\n},")
+	print ( "  y2:", (math.sin(math.radians(grado_z+i)) * -z2) + cy, "\n},")
 
 #print(swe_houses)
 #for p in range( 0,7 ):
