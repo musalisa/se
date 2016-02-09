@@ -69,21 +69,21 @@ ARMC = (swe.sidtime(jut)+(top_long/15))*15;
 #print( "\nARMC")
 #print(ARMC)
 
-# Ascensioni rette delle case
-case_ar = [ARMC]
-case_ar_gm = []
-for i in range(0,12):
-	case_ar.append((case_ar[i-1] + 30)%360)
+# Ascensioni oblique  delle case (corrispondono alle ascensioni rette, in quanto si misurano sull'equatore
+case_aoch = [ARMC]
+case_aoch_gm = []
 for i in range(1,12):
-	case_ar_gm.append(decdeg2dm(case_ar[i],"dm"))
-#print( "\nAR case dalla 10°")
-#print(case_ar)
+	case_aoch.append((case_aoch[i-1] + 30)%360)
+for i in range(1,12):
+	case_aoch_gm.append(decdeg2dm(case_aoch[i],"dm"))
+print( "\nAOCH case dalla 10°")
+print(case_aoch)
 #print(case_ar_gm)
 
 #  Ascensioni oblique delle  case
 (ZZ, AOHOR) = divmod((ARMC + 90) , 360)
-#print( "\nAOHOR")
-#print( AOHOR)
+print( "\nAOHOR")
+print( AOHOR)
 
 # Poli delle case
 case_poli = []
@@ -108,12 +108,12 @@ cx = 350
 cy = 350
 z1 = 200
 z2 = 300
-for i in range(0, 360, 30):
+#for i in range(0, 360, 30):
 	##print (grado_z+i, math.cos(math.radians(grado_z+i))*80, math.sin(math.radians(grado_z+i))*80,math.cos(math.radians(grado_z+i))*100, math.sin(math.radians(grado_z+i))*100);
-	print ( "{ x1:", (math.cos(math.radians(grado_z+i)) * z1) + cx, ",")
-	print ( "  y1:", (math.sin(math.radians(grado_z+i)) * -z1) + cy, ",")
-	print ( "  x2:", (math.cos(math.radians(grado_z+i)) * z2) + cx, ",")
-	print ( "  y2:", (math.sin(math.radians(grado_z+i)) * -z2) + cy, "\n},")
+	#print ( "{ x1:", (math.cos(math.radians(grado_z+i)) * z1) + cx, ",")
+	#print ( "  y1:", (math.sin(math.radians(grado_z+i)) * -z1) + cy, ",")
+	#print ( "  x2:", (math.cos(math.radians(grado_z+i)) * z2) + cx, ",")
+	#print ( "  y2:", (math.sin(math.radians(grado_z+i)) * -z2) + cy, "\n},")
 
 #print(swe_houses)
 #for p in range( 0,7 ):
