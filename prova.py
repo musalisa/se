@@ -45,11 +45,17 @@ def hor(hor, polo):
 ###### Data #################################
 # uomo nato a Milano (longitudine 9°11' Est, latitudine +45°28') il 14 Aprile 1956 alle ore 10 e minuti 35, ora civile
 ## 14 Aprile 1956, ore 10:35 (9:35 TU) a Milano, +45°28', 9°11' Est.
-YYYY = 1956
-MM = 4
-DD = 14
-hh = 9
-mm = 35
+#YYYY = 1956
+#MM = 4
+#DD = 14
+#hh = 9
+#mm = 35
+#Lezione 7 Es.  20  Bologna (+44°30', Est 11°21'), 22 Febbraio 1940, 11h 20m TU.
+YYYY = 1940
+MM = 2
+DD = 22
+hh = 11
+mm = 20
 ut = hh + mm/60
 jut = swe.julday( YYYY, MM, DD, ut, swe.GREG_CAL)
 
@@ -60,7 +66,10 @@ house_nums = (10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 # Alessandria 44°54′48″N 8°37′12″E 95m
 #top_long = 44.916; top_lat = 8.616; top_elev = 95;
 # Milano 45°27′50.98″N 9°11′25.21″E 122m
-top_lat = 45.464; top_long = 9.19; top_elev = 122;
+#top_lat = 45.464; top_long = 9.19; top_elev = 122;
+# Bologna (+44°30', Est 11°21')
+top_lat = 44.5; top_long = 11.35; top_elev = 54;
+
 swe.set_topo(top_long, top_lat, top_elev)
 
 ## CASE ##########################################
@@ -116,10 +125,11 @@ z2 = 300
 	#print ( "  y2:", (math.sin(math.radians(grado_z+i)) * -z2) + cy, "\n},")
 
 #print(swe_houses)
-#for p in range( 0,7 ):
-#	print( swe.get_planet_name( p ))
-#	print( swe.calc_ut( jut, p, swe.FLG_SPEED ))
-#	print( swe.calc_ut( jut, p, swe.FLG_EQUATORIAL ))
+print( "\nPIANETI - Eclittiche ed equatoriali")
+for p in range( 0,7 ):
+	print( "\n" + swe.get_planet_name( p ))
+	print("lamda %.4f beta %4f" %  (swe.calc_ut( jut, p, swe.FLG_SPEED )[0],swe.calc_ut( jut, p, swe.FLG_SPEED )[1] ))
+	print("alfa %.4f delta %4f" %  (swe.calc_ut( jut, p, swe.FLG_EQUATORIAL )[0],swe.calc_ut( jut, p, swe.FLG_EQUATORIAL )[1] ))
 
 
 #print(swe.houses_ex(jut, top_lat, top_long, b'P'))
