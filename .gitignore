@@ -41,3 +41,7 @@ SWEP/*
 
 # D3 library
 d3/*
+
+
+# Image files
+images/*
