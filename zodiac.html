@@ -1,122 +1,12 @@
- <!DOCTYPE html>
- <html>
-   <head>
+<html><head>
      <title>Hello World</title>
-	<script type="text/javascript" src="./d3/d3.min.js"></script>
+	<script src="./d3/d3.min.js" type="text/javascript"></script>
    </head>
    <body>
-     <script type="text/javascript">
-circleRadii = [300, 200]
-var svgContainer = d3.select("body").append("svg")
-                                    .attr("width", 700)
-                                    .attr("height", 700);
+     <svg width="700" height="700"><circle cx="350" cy="350" r="300" style="fill: white; stroke: black; stroke-width: 3;"/><circle cx="350" cy="350" r="200" style="fill: white; stroke: black; stroke-width: 3;"/><line x1="334.21734054505555" y1="150.62370336339063" x2="326.3260108175833" y2="50.93555504508595" style="stroke: black; stroke-width: 3;"/><line x1="236.64366765443472" y1="185.2263919277066" x2="179.96550148165207" y2="102.83958789155992" style="stroke: black; stroke-width: 3;"/><line x1="169.44373247276212" y1="263.9800357089559" x2="79.16559870914318" y2="220.97005356343382" style="stroke: black; stroke-width: 3;"/><line x1="150.62370336339063" y1="365.78265945494445" x2="50.93555504508595" y2="373.6739891824167" style="stroke: black; stroke-width: 3;"/><line x1="185.2263919277066" y1="463.3563323455653" x2="102.83958789155992" y2="520.034498518348" style="stroke: black; stroke-width: 3;"/><line x1="263.9800357089559" y1="530.5562675272379" x2="220.97005356343382" y2="620.8344012908568" style="stroke: black; stroke-width: 3;"/><line x1="365.7826594549445" y1="549.3762966366094" x2="373.6739891824168" y2="649.064444954914" style="stroke: black; stroke-width: 3;"/><line x1="463.3563323455652" y1="514.7736080722934" x2="520.0344985183478" y2="597.1604121084401" style="stroke: black; stroke-width: 3;"/><line x1="530.5562675272379" y1="436.0199642910441" x2="620.8344012908568" y2="479.0299464365662" style="stroke: black; stroke-width: 3;"/><line x1="549.3762966366094" y1="334.2173405450555" x2="649.064444954914" y2="326.32601081758327" style="stroke: black; stroke-width: 3;"/><line x1="514.7736080722934" y1="236.6436676544348" x2="597.1604121084401" y2="179.9655014816522" style="stroke: black; stroke-width: 3;"/><line x1="436.0199642910442" y1="169.44373247276215" x2="479.0299464365662" y2="79.16559870914324" style="stroke: black; stroke-width: 3;"/>
 
-var circles = svgContainer.selectAll("circle")
-                          .data(circleRadii)
-                          .enter()
-                          .append("circle");
+<object width="64" height="64" border="1" data="images/gemelli.svg" type="image/svg+xml"></object>
+</svg>
+  
 
-var circleAttributes = circles
-                      .attr("cx", 350)
-                      .attr("cy", 350)
-                      .attr("r", function (d) { return d; })
-                      .style("fill", "white")
-                      .style("stroke", "black")
-                      .style("stroke-width", 3);
-
-zsegsAttributes =  
-//	[	{ "x1": 0, "y1": 200, "x2": 0, "y2": 300 }]
-		//{ "x1": 200, "y1": 0, "x2": 300, "y2": 0 } ]
-		//{ "x1": 0, "y1": 200, "x2": 0, "y2": 300 },
-		//{ "x1": 200, "y1": 0, "x2": 300, "y2": 0 } ]
-
-
-[
-{ x1: 334.21734054505555 ,
-  y1: 150.62370336339063 ,
-  x2: 326.3260108175833 ,
-  y2: 50.93555504508595 
-},
-{ x1: 236.64366765443472 ,
-  y1: 185.2263919277066 ,
-  x2: 179.96550148165207 ,
-  y2: 102.83958789155992 
-},
-{ x1: 169.44373247276212 ,
-  y1: 263.9800357089559 ,
-  x2: 79.16559870914318 ,
-  y2: 220.97005356343382 
-},
-{ x1: 150.62370336339063 ,
-  y1: 365.78265945494445 ,
-  x2: 50.93555504508595 ,
-  y2: 373.6739891824167 
-},
-{ x1: 185.2263919277066 ,
-  y1: 463.3563323455653 ,
-  x2: 102.83958789155992 ,
-  y2: 520.034498518348 
-},
-{ x1: 263.9800357089559 ,
-  y1: 530.5562675272379 ,
-  x2: 220.97005356343382 ,
-  y2: 620.8344012908568 
-},
-{ x1: 365.7826594549445 ,
-  y1: 549.3762966366094 ,
-  x2: 373.6739891824168 ,
-  y2: 649.064444954914 
-},
-{ x1: 463.3563323455652 ,
-  y1: 514.7736080722934 ,
-  x2: 520.0344985183478 ,
-  y2: 597.1604121084401 
-},
-{ x1: 530.5562675272379 ,
-  y1: 436.0199642910441 ,
-  x2: 620.8344012908568 ,
-  y2: 479.0299464365662 
-},
-{ x1: 549.3762966366094 ,
-  y1: 334.2173405450555 ,
-  x2: 649.064444954914 ,
-  y2: 326.32601081758327 
-},
-{ x1: 514.7736080722934 ,
-  y1: 236.6436676544348 ,
-  x2: 597.1604121084401 ,
-  y2: 179.9655014816522 
-},
-{ x1: 436.0199642910442 ,
-  y1: 169.44373247276215 ,
-  x2: 479.0299464365662 ,
-  y2: 79.16559870914324 
-}
-]
-
-
-
-
-
-
-var zsegs = svgContainer.selectAll("zsegs")
-                          .data(zsegsAttributes)
-                          .enter()
-                          .append("line");
-var zsegsAttributes = zsegs
-                      .attr("x1", function (d) { return d.x1})
-                      .attr("y1", function (d) { return d.y1})
-                      .attr("x2", function (d) { return d.x2})
-                      .attr("y2", function (d) { return d.y2})
-                      .style("stroke", "black")
-                      .style("stroke-width", 3);
-
-
-zsignimgs = [ "images/ariete.gif" ]
-
-//d3.select("body").append("img").attr("src", "http://www.gifanimategratis.eu/img/singole/segni_zodiacali/acquario.gif");
-     </script>
-<object type="image/svg+xml" data="images/gemelli.svg" 
-	width="64" height="64" border="1"></object>
-  </body>
-</html>
+</body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .axis text {
+          font: 10px sans-serif;
+        }
+
+        .axis line,
+        .axis path {
+          fill: none;
+          stroke: #000;
+          stroke-width: 1;
+          shape-rendering: crispEdges;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript" src="./d3/d3.min.js"></script>
+
+    <script>
+	var svg_name = "zodiac_weel.svg";
+	//var svg_name = "https://upload.wikimedia.org/wikipedia/commons/0/07/USDOL_Seal_circa_2015.svg";
+	var main_svg = d3.select("body").append("svg")
+            .attr("width", 1000)
+            .attr("height", 1000)
+            .append("g")
+            ;
+
+  d3.xml(svg_name, function(error, documentFragment) {
+
+                if (error) {console.log(error); return;}
+
+                var svgNode = documentFragment
+                            .getElementsByTagName("svg")[0];
+                //use plain Javascript to extract the node
+
+                main_svg.node().appendChild(svgNode);
+                //d3's selection.node() returns the DOM node, so we
+                //can use plain Javascript to append content
+            });
+  d3.select("body svg").append("g").append("circle").attr("cx", 25).attr("cy", 25).attr("r", 25).style("fill", "purple");
+
+
+    </script>
+
+</body>
+</html>
