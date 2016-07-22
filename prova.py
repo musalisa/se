@@ -101,11 +101,11 @@ case_poli = []
 case_cuspidi = swe.houses(jut, top_lat, top_long, b'P')[0]
 HOR = hor( AOHOR, top_lat)
 #HOR = case_cuspidi[0]
-#print( "\nHOR")
-#print( HOR )
-#print(decdeg2dm(HOR))
-#print( "\ncuspidi case dalla 10° sullo zodiaco")
-#print(case_cuspidi)
+print( "\nHOR")
+print( HOR )
+print(decdeg2dm(HOR))
+print( "\ncuspidi case dalla 10° sullo zodiaco")
+print(case_cuspidi)
 swe_houses = swe.houses(jut, top_lat, top_long, b'P')
 
 

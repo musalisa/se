@@ -42,6 +42,8 @@ SWEP/*
 # D3 library
 d3/*
 
-
 # Image files
 images/*
+
+# Python 3.5.2
+py352/*
