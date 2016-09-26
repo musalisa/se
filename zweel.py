@@ -9,7 +9,7 @@ rz1 = 200
 rz2 = 300
 rz3 = 320
 rdz1 = rz2 + (rz3 - rz2)/2
-dwg = svgwrite.Drawing('zweel0.svg', profile = 'tiny')
+dwg = svgwrite.Drawing('images/zodiaco.svg', profile = 'tiny')
 zodiac = dwg.add(dwg.g(id='zodiac', stroke='black',  stroke_width = 2, fill = "white"))
 zodiac.add(dwg.circle(center=(0,0), r=rz3  ))
 zodiac.add(dwg.circle(center=(0,0), r=rz2  ))
