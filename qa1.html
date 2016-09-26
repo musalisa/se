@@ -53,8 +53,8 @@
                var segniNode = documentFragment
                           .getElementById("simboli-segni-zodiacali");
              main_svg.node().appendChild(segniNode);
-		d3.select("#ariete").attr("transform", "translate(0,100)")
-		d3.select("#ariete").attr("transform", "translate(" +Math.dcos(HOR_DEG)*350, Math.dsin(HOR_DEG)*350)
+		//d3.select("#ariete").attr("transform", "translate(0,100)")
+		d3.select("#ariete").attr("transform", "translate(" + Math.dcos(HOR_DEG)*350 + ", " + Math.dsin(HOR_DEG)*350 + ")")
             });
 	var horizon = main_svg.append("line")
 		.attr("x1",  Math.dcos(HOR_DEG)*350)
