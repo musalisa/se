@@ -43,7 +43,7 @@ SWEP/*
 d3/*
 
 # Image files
-images/*
+#images/*
 
 # Python 3.5.2
 py352/*
