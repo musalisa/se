@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .axis text {
+          font: 10px sans-serif;
+        }
+
+        .axis line,
+        .axis path {
+          fill: none;
+          stroke: #000;
+          stroke-width: 1;
+          shape-rendering: crispEdges;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript" src="./d3/d3.min.js"></script>
+
+    <script>
+	Math.dsin = function() {
+	  var piRatio = Math.PI / 180;
+	  return function dsin(degrees) {
+	    return Math.sin(degrees * piRatio);
+	  };
+	}();
+	Math.dcos = function() {
+	  var piRatio = Math.PI / 180;
+	  return function dcos(degrees) {
+	    return Math.cos(degrees * piRatio);
+	  };
+	}();
+	var svg_name = "images/zodiaco_con_simboli.svg";
+	var svg_segni_zodiacali = "segni.svg";
+	var HOR_DEG = 0
+	var MC_DEG = 270
+	var WEEL_ROTATION = HOR_DEG - 180  
+	var HOR_RAD = HOR_DEG * Math.PI/180
+	//var svg_name = "https://upload.wikimedia.org/wikipedia/commons/0/07/USDOL_Seal_circa_2015.svg";
+	var main_svg = d3.select("body").append("svg")
+            .attr("width", 1000)
+            .attr("height", 1000)
+            .append("g")
+	    //trasformazione generale per tutto il quadro astrale
+            .attr("transform", "translate(360,360) rotate(" + WEEL_ROTATION + ") scale(1,-1) ")
+            ;
+
+  d3.xml(svg_name, function(error, documentFragment) {
+
+                if (error) {console.log(error); return;}
+
+                var svgNode = documentFragment
+                            .getElementsByTagName("g")[0];
+                //use plain Javascript to extract the node
+
+                main_svg.node().appendChild(svgNode);
+                //d3's selection.node() returns the DOM node, so we
+                //can use plain Javascript to append content
+            });
+  d3.xml(svg_segni_zodiacali, function(error, documentFragment) {
+                if (error) {console.log(error); return;}
+                var arieteNode = documentFragment
+                            .getElementsByID("ariete");
+                main_svg.node().appendChild(arieteNode);
+            });
+	var horizon = main_svg.append("line")
+		.attr("x1",  Math.dcos(HOR_DEG)*350)
+		.attr("y1", Math.dsin(HOR_DEG)*350)
+		.attr("x2",  Math.dcos(HOR_DEG+180)*350)
+		.attr("y2", Math.dsin(HOR_DEG+180)*350)
+	        .attr("style", "fill:#000000;stroke:#000000;stroke-width:2")
+		;
+	var meridiano = main_svg.append("line")
+		.attr("x1",  Math.dcos(MC_DEG)*350)
+		.attr("y1", Math.dsin(MC_DEG)*350)
+		.attr("x2",  Math.dcos(MC_DEG+180)*350)
+		.attr("y2", Math.dsin(MC_DEG+180)*350)
+	        .attr("style", "fill:#000000;stroke:#000000;stroke-width:2")
+		;
+
+    </script>
+
+</body>
+
+</html>
