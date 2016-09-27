@@ -33,8 +33,8 @@
 	    return Math.cos(degrees * piRatio);
 	  };
 	}();
-	var svg_name = "images/zodiaco_con_simboli.svg";
-	var svg_segni_zodiacali = "segni.svg";
+	var svg_zodiaco = "images/zodiaco.svg";
+	var svg_segni_zodiacali = "images/simboli_segni_gruppo.svg";
 	var HOR_DEG = 0
 	var MC_DEG = 270
 	var WEEL_ROTATION = HOR_DEG - 180  
@@ -48,23 +48,20 @@
             .attr("transform", "translate(360,360) rotate(" + WEEL_ROTATION + ") scale(1,-1) ")
             ;
 
-  d3.xml(svg_name, function(error, documentFragment) {
-
+  d3.xml(svg_zodiaco, function(error, documentFragment) {
                 if (error) {console.log(error); return;}
-
                 var svgNode = documentFragment
                             .getElementsByTagName("g")[0];
-                //use plain Javascript to extract the node
-
                 main_svg.node().appendChild(svgNode);
-                //d3's selection.node() returns the DOM node, so we
-                //can use plain Javascript to append content
             });
-  d3.xml(svg_segni_zodiacali, function(error, documentFragment) {
+  	xml_segni_zodiacali = d3.xml(svg_segni_zodiacali)
+  	d3.xml(svg_segni_zodiacali, function(error, documentFragment) {
                 if (error) {console.log(error); return;}
-                var arieteNode = documentFragment
-                            .getElementsByID("ariete");
-                main_svg.node().appendChild(arieteNode);
+               var segniNode = documentFragment
+                          .getElementById("simboli-segni-zodiacali");
+             main_svg.node().appendChild(segniNode);
+		//d3.select("#ariete").attr("transform", "translate(0,100)")
+		d3.select("#ariete").attr("transform", "translate(" + Math.dcos(HOR_DEG)*350 + ", " + Math.dsin(HOR_DEG)*350 + ")")
             });
 	var horizon = main_svg.append("line")
 		.attr("x1",  Math.dcos(HOR_DEG)*350)

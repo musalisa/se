@@ -33,8 +33,8 @@
 	    return Math.cos(degrees * piRatio);
 	  };
 	}();
-	var svg_name = "zweel.svg";
-	var svg_segni_zodiacali = "images/segnig.svg";
+	var svg_zodiaco = "images/zodiaco.svg";
+	var svg_segni_zodiacali = "images/simboli_segni_gruppo.svg";
 	var HOR_DEG = 0
 	var MC_DEG = 270
 	var WEEL_ROTATION = HOR_DEG - 180  
@@ -44,6 +44,7 @@
             .attr("width", 1000)
             .attr("height", 1000)
             .append("g")
+	    //trasformazione generale per tutto il quadro astrale
             .attr("transform", "translate(360,360) rotate(" + WEEL_ROTATION + ") scale(1,-1) ")
             ;
 
