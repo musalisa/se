@@ -1,5 +1,6 @@
 import swisseph as swe
 import math
+import datetime
 
 global epsilon
 epsilon = 23.45
@@ -51,11 +52,14 @@ def hor(hor, polo):
 #hh = 9
 #mm = 35
 #Lezione 7 Es.  20  Bologna (+44°30', Est 11°21'), 22 Febbraio 1940, 11h 20m TU.
-YYYY = 1940
-MM = 2
-DD = 22
-hh = 11
-mm = 20
+giorno = datetime.datetime.now().date()
+ora = datetime.datetime.now().time()
+
+YYYY = giorno.year
+MM = giorno.month
+DD = giorno.day
+hh = ora.hour
+mm = ora.minute
 ut = hh + mm/60
 jut = swe.julday( YYYY, MM, DD, ut, swe.GREG_CAL)
 
