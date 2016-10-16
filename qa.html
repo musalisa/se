@@ -15,12 +15,19 @@
           shape-rendering: crispEdges;
         }
     </style>
+<script src="qa.json"></script>
 </head>
 <body>
 
-<script type="text/javascript" src="./d3/d3.min.js"></script>
+<!-- <script type="text/javascript" src="./d3/d3.min.js"></script> -->
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
 
     <script>
+	function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+	}
 	Math.dsin = function() {
 	  var piRatio = Math.PI / 180;
 	  return function dsin(degrees) {
@@ -35,15 +42,7 @@
 	}();
 	var svg_zodiaco = "images/zodiaco.svg";
 	var svg_segni_zodiacali = "images/simboli_segni_gruppo.svg";
-	var json_qa = "qa.json";
-	var HOR_DEG = 0;
-	//var svg_name = "https://upload.wikimedia.org/wikipedia/commons/0/07/USDOL_Seal_circa_2015.svg";
-	d3.json(json_qa, function(error, jsonQa){
-                if (error) {console.log(error); return;}
-		var qaData = jsonQa;
-		//console.log (qaData['HOR']['lambda']);
-		HOR_DEG = qaData['HOR']['lambda'];
-  	});
+	var HOR_DEG = qaData['HOR']['lambda'];
 	console.log (HOR_DEG);
 	var MC_DEG = HOR_DEG - 90;
 	var HOR_RAD = HOR_DEG * Math.PI/180
@@ -70,6 +69,7 @@
              main_svg.node().appendChild(segniNode);
 		//d3.select("#ariete").attr("transform", "translate(0,100)")
 		sd = [1,2,3,4,5,6,7,8,9]
+	console.log (HOR_DEG);
 		d3.selectAll("path").attr("transform", "translate(" + Math.dcos(HOR_DEG)*350 + ", " + Math.dsin(HOR_DEG)*350 + ")")
             });
 	var horizon = main_svg.append("line")
