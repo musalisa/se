@@ -19,10 +19,7 @@
 </head>
 <body>
 
-<!-- <script type="text/javascript" src="./d3/d3.min.js"></script> -->
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
-<script src="http://d3js.org/queue.v1.min.js"></script>
+<script type="text/javascript" src="./d3/d3.min.js"></script>
 
     <script>
 	function sleep(ms) {
@@ -70,7 +67,7 @@
 		//d3.select("#ariete").attr("transform", "translate(0,100)")
 		sd = [1,2,3,4,5,6,7,8,9]
 	console.log (HOR_DEG);
-		d3.selectAll("path").attr("transform", "translate(" + Math.dcos(HOR_DEG)*350 + ", " + Math.dsin(HOR_DEG)*350 + ")")
+		d3.selectAll("path").attr("transform", "translate(" + Math.dcos(0)*350 + ", " + Math.dsin(0)*350 + ")")
             });
 	var horizon = main_svg.append("line")
 		.attr("x1",  Math.dcos(HOR_DEG)*350)
