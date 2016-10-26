@@ -67,7 +67,8 @@
 		//d3.select("#ariete").attr("transform", "translate(0,100)")
 		sd = [1,2,3,4,5,6,7,8,9]
 	console.log (HOR_DEG);
-		d3.selectAll("#ariete, #toro").attr("transform", "translate(" + Math.dcos(45)*350 + ", " + Math.dsin(45)*350 + "), rotate(" + HOR_DEG + ")")
+		//d3.selectAll("#ariete, #toro").attr("transform", "translate(" + Math.dcos(45)*350 + ", " + Math.dsin(45)*350 + "), rotate(" + HOR_DEG + ")")
+		d3.selectAll("#ariete, #toro").data(sd).update().attr("transform", "translate(" + Math.dcos(45)*350 + ", " + Math.dsin(45)*350 + "), rotate(" + HOR_DEG + ")");
             });
 	var horizon = main_svg.append("line")
 		.attr("x1",  Math.dcos(HOR_DEG)*350)
