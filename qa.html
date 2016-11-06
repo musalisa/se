@@ -22,9 +22,6 @@
 <script type="text/javascript" src="./d3/d3.min.js"></script>
 
     <script>
-	function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-	}
 	Math.dsin = function() {
 	  var piRatio = Math.PI / 180;
 	  return function dsin(degrees) {
@@ -65,10 +62,10 @@
                           .getElementById("simboli-segni-zodiacali");
              main_svg.node().appendChild(segniNode);
 		//d3.select("#ariete").attr("transform", "translate(0,100)")
-		sd = [1,2,3,4,5,6,7,8,9]
+		//sd = [15,45,75,105,135,165,195,225,255,285,315,345,375]
+		sd = [ {id: "ariete", deg: 15}, {id: "toro", deg: 45}, {id: "gemelli", deg: 75}, {id: "cancro", deg: 105}, {id: "leone", deg: 135}, {id: "vergine", deg: 165}, {id: "bilancia", deg: 195}, {id: "scorpione", deg: 225}, {id: "sagittario", deg: 255}, {id: "capricorno", deg: 285}, {id: "acquario", deg: 315}, {id: "pesci", deg: 345} ];
 	console.log (HOR_DEG);
-		//d3.selectAll("#ariete, #toro").attr("transform", "translate(" + Math.dcos(45)*350 + ", " + Math.dsin(45)*350 + "), rotate(" + HOR_DEG + ")")
-		d3.selectAll("#ariete, #toro").data(sd).update().attr("transform", "translate(" + Math.dcos(45)*350 + ", " + Math.dsin(45)*350 + "), rotate(" + HOR_DEG + ")");
+		d3.selectAll("#ariete, #toro, #gemelli, #cancro, #leone, #vergine, #bilancia, #scorpione, #sagittario, #capricorno, #acquario, #pesci").data(sd, function(d) { return d ? d.id : this.id; }).attr("transform", function(d) { deg = d.deg; return "translate(" + Math.dcos(deg)*250 + ", " + Math.dsin(deg)*250 + "), rotate(" + HOR_DEG + "), scale(-1,1)" });
             });
 	var horizon = main_svg.append("line")
 		.attr("x1",  Math.dcos(HOR_DEG)*350)
