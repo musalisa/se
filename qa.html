@@ -35,6 +35,7 @@
 	  };
 	}();
 	bind_by_id = function(d) { return d ? d : this.id; };
+	posizione_segni_zweel = function(d,i) { deg = (i*30)+15; return "translate(" + Math.dcos(deg)*250 + ", " + Math.dsin(deg)*250 + "), rotate(" + HOR_DEG + "), scale(-1,1)" };
 	var svg_zodiaco = "images/zodiaco.svg";
 	var svg_segni_zodiacali = "images/simboli_segni_gruppo.svg";
 	var HOR_DEG = qaData['HOR']['lambda'];
@@ -43,7 +44,7 @@
 	var HOR_RAD = HOR_DEG * Math.PI/180
 	var WEEL_ROTATION = HOR_DEG - 180  
 	var selector_segni = "#ariete, #toro, #gemelli, #cancro, #leone, #vergine, #bilancia, #scorpione, #sagittario, #capricorno, #acquario, #pesci";
-	nomi_segni = [ "ariete", "toro", "gemelli", "cancro", "leone", "vergine", "bilancia", "scorpione", "sagittario", "capricorno", "acquario", "pesci" ];
+	var nomi_segni = [ "ariete", "toro", "gemelli", "cancro", "leone", "vergine", "bilancia", "scorpione", "sagittario", "capricorno", "acquario", "pesci" ];
 	var main_svg = d3.select("body").append("svg")
             .attr("width", 1000)
             .attr("height", 1000)
@@ -66,6 +67,7 @@
              main_svg.node().appendChild(segniNode);
 	//console.log (HOR_DEG);
 		d3.selectAll(selector_segni).data(nomi_segni, bind_by_id).attr("transform", function(d,i) { deg = (i*30)+15; return "translate(" + Math.dcos(deg)*250 + ", " + Math.dsin(deg)*250 + "), rotate(" + HOR_DEG + "), scale(-1,1)" });
+		//d3.selectAll(selector_segni).data(nomi_segni, bind_by_id).attr("transform", function(d,i) { deg = (i*30)+15; return "translate(" + Math.dcos(deg)*250 + ", " + Math.dsin(deg)*250 + "), rotate(" + HOR_DEG + "), scale(-1,1)" });
             });
 	var horizon = main_svg.append("line")
 		.attr("x1",  Math.dcos(HOR_DEG)*350)
